@@ -63,8 +63,6 @@ components:
           type: string
         amount:
           type: string
-        recipe:
-          $ref: '#/components/schemas/Recipe'
     Meal:
       title: Meal
       type: object
@@ -74,14 +72,6 @@ components:
           type: string
         makeOn:
           type: number
-        recipes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipe'
-        shoppingLists:
-          type: array
-          items:
-            $ref: '#/components/schemas/ShoppingList'
     ShoppingList:
       title: ShoppingList
       type: object
@@ -93,14 +83,6 @@ components:
           type: number
         toDate:
           type: number
-        meals:
-          type: array
-          items:
-            $ref: '#/components/schemas/Meal'
-        ingredients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ingredient'
   securitySchemes:
     API Key - 1:
       name: API Key
