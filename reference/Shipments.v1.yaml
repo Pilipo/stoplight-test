@@ -8,7 +8,8 @@ paths:
   /recipe:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - recipes
       responses:
         '200':
           description: OK
@@ -23,6 +24,10 @@ paths:
                     type: string
                   yield:
                     type: string
+                  ingredients:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ingredient'
             application/xml:
               schema:
                 type: object
@@ -36,6 +41,13 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+      tags:
+        - recipes
+      description: Create a new recipe.
 components:
   schemas:
     Recipe:
@@ -88,3 +100,5 @@ components:
       name: API Key
       type: apiKey
       in: query
+tags:
+  - name: recipes
