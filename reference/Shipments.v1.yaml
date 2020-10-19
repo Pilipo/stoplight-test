@@ -50,14 +50,6 @@ components:
           type: string
         yield:
           type: string
-        ingredients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ingredient'
-        meals:
-          type: array
-          items:
-            $ref: '#/components/schemas/Meal'
       required:
         - id
     Ingredient:
