@@ -16,7 +16,13 @@ paths:
             application/json:
               schema:
                 type: object
-                properties: {}
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  yield:
+                    type: string
             application/xml:
               schema:
                 type: object
