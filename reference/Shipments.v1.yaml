@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Menu Planner
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /recipe:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-recipe
+      description: Returns list of all recipes.
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-recipe
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Recipe:
+      title: Recipe
+      type: object
+      x-examples: {}
+      description: A recipe is a basic collection of ingredients to be prepared as a meal.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        yield:
+          type: string
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+        meals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meal'
+      required:
+        - id
+    Ingredient:
+      title: Ingredient
+      type: object
+      description: Ingredient is a loosely define component of a recipe that will serve to define a shopping list.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
+        recipe:
+          $ref: '#/components/schemas/Recipe'
+    Meal:
+      title: Meal
+      type: object
+      description: A meal is reference to one or more recipes selected to be made on a specific date.
+      properties:
+        id:
+          type: string
+        makeOn:
+          type: number
+        recipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+        shoppingLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShoppingList'
+    ShoppingList:
+      title: ShoppingList
+      type: object
+      description: Collection of ingredients contained within a collection of meals.
+      properties:
+        id:
+          type: string
+        fromDate:
+          type: number
+        toDate:
+          type: number
+        meals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meal'
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+  securitySchemes:
+    API Key - 1:
+      name: API Key
+      type: apiKey
+      in: query
